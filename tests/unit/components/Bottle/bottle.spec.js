@@ -5,7 +5,7 @@ import fixture from './fixtures'
 describe('Bottle.vue', () => {
   let wrapper
 
-  fixture.openBottle = jest.fn()
+  fixture.buyBottle = jest.fn()
   beforeEach(() => { wrapper = shallowMount(Bottle, { propsData: fixture }) })
   afterEach(() => { wrapper.destroy() })
 
@@ -47,9 +47,9 @@ describe('Bottle.vue', () => {
     })
 
     // testing custom events
-    it('should emmit the openBottle event', () => {
+    it('should emmit the buyBottle event', () => {
       wrapper.find('#b').trigger('click')
-      expect(wrapper.emitted().openBottle).toBeTruthy()
+      expect(wrapper.emitted().buyBottle).toBeTruthy()
     })
   })
 

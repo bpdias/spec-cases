@@ -4,10 +4,11 @@
     <p>tipo: {{item.type}}</p>
     <p>tamanho: {{item.size}}</p>
     <p>preço: {{item.price}}</p>
-    <p>quantidade: {{item.ammount}}</p>
+    <p>quantidade comprada: {{item.ammount}}</p>
+    <p>quantidade bebida: {{item.ammount}}</p>
     <img :src="item.image" alt="">
     <p>valor total: {{this.totalValue}}</p>
-    <button @click="openBottle" id="b">Open the Bottle?</button>
+    <button @click="buyBottle" id="b">Buy a Bottle?</button>
   </div>
 </template>
 <script>
@@ -23,9 +24,9 @@ export default {
     someMethod () {
       return 1
     },
-    openBottle () {
+    buyBottle () {
       this.item.ammount += 1
-      this.$emit('openBottle')
+      this.$emit('buyBottle')
     }
   }
 }

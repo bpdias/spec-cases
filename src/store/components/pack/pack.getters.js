@@ -1,3 +1,3 @@
 export default {
-  packItemCount: state => state.packItem
+  packItensCount: state => state.packItensCount
 }

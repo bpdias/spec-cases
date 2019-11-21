@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p>Bottle Count: </p>
+    <p>Pack Count: {{packItensCount}}</p>
     <div class='pack' v-for='item in packItens' :key='item.id'>
-      <bottle @openBottle="removeBottle" :item="item"></bottle> 1 </div>
+      <bottle @buyBottle="buyBottle" :item="item"></bottle> 1 </div>
     </div>
   </template>
 <script>
@@ -25,9 +25,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions('pack', ['removePackItem']),
-    removeBottle () {
-      this.removePackItem()
+    ...mapActions('pack', ['addPackItem']),
+    buyBottle () {
+      this.addPackItem()
       return true
     }
   },

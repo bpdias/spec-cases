@@ -17,10 +17,10 @@ describe('Pack.vue', () => {
     pack = {
       namespaced: true,
       actions: {
-        removePackItem: jest.fn()
+        addPackItem: jest.fn()
       },
       getters: {
-        packItemCount: jest.fn()
+        packItensCount: jest.fn()
       },
       state: {
         packItensCount: 0
@@ -49,17 +49,18 @@ describe('Pack.vue', () => {
     })
   })
 
-  // listem to child emmited event
   describe('when listen to child emmited event', () => {
-    it('should trigger the removeBottle method', () => {
+    // listem to child emmited event
+    it('should trigger the buyBottle method', () => {
       wrapper.setData({ packItens: fixture.data.packItens })
-      wrapper.find(Bottle).vm.$emit('removeBottle')
-      expect(wrapper.vm.removeBottle()).toBe(true)
+      wrapper.find(Bottle).vm.$emit('buyBottle')
+      expect(wrapper.vm.buyBottle()).toBe(true)
     })
 
+    // testing action dispatch
     it('should dispatch the removePackItem action', () => {
-      wrapper.vm.removeBottle()
-      expect(pack.actions.removePackItem).toHaveBeenCalled()
+      wrapper.vm.buyBottle()
+      expect(pack.actions.addPackItem).toHaveBeenCalled()
     })
   })
 })

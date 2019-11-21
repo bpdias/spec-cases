@@ -1,5 +1,5 @@
 export default {
-  addPackItem: (state, payload) => {
-    state.packItem = payload
+  addPackItem: (state) => {
+    state.packItensCount += 1
   }
 }

@@ -1,8 +1,12 @@
 <template>
   <div>
-    <p>Pack Count: {{packItensCount}}</p>
+    <p class="pack-count">Pack Count: {{packItensCount}}</p>
     <div class='pack' v-for='item in packItens' :key='item.id'>
-      <bottle @buyBottle="buyBottle" :item="item"></bottle> 1 </div>
+      <bottle
+        @buyBottle="buyBottle"
+        @drinkBottle="buyBottle"
+        :item="item" />
+    </div>
     </div>
   </template>
 <script>
@@ -20,14 +24,15 @@ export default {
         size: 'latinha',
         brand: 'heineken',
         image: '/images/heineken.png',
-        ammount: 2
+        ammount: 2,
+        drinking: 0
       }]
     }
   },
   methods: {
     ...mapActions('pack', ['addPackItem']),
-    buyBottle () {
-      this.addPackItem()
+    buyBottle (ammount) {
+      if (ammount > 6) this.addPackItem()
       return true
     }
   },

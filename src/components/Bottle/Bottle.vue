@@ -5,10 +5,11 @@
     <p>tamanho: {{item.size}}</p>
     <p>preço: {{item.price}}</p>
     <p>quantidade comprada: {{item.ammount}}</p>
-    <p>quantidade bebida: {{item.ammount}}</p>
+    <p>quantidade bebida: {{item.drinking}}</p>
     <img :src="item.image" alt="">
     <p>valor total: {{this.totalValue}}</p>
     <button @click="buyBottle" id="b">Buy a Bottle?</button>
+    <button @click="drinkBottle" id="b">Drink a Bottle?</button>
   </div>
 </template>
 <script>
@@ -26,7 +27,13 @@ export default {
     },
     buyBottle () {
       this.item.ammount += 1
-      this.$emit('buyBottle')
+      this.$emit('buyBottle', this.item.ammount)
+    },
+    drinkBottle () {
+      if (this.item.ammount > this.item.drinking) {
+        this.item.drinking += 1
+        this.$emit('drinkBottle')
+      }
     }
   }
 }

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import Pack from '@/components/Pack/Pack'
 import Bottle from '@/components/Bottle/Bottle'
 import fixture from './fixtures'
+import packMutations from '@/store/components/pack/pack.mutations'
 
 const localVue = createLocalVue()
 
@@ -20,7 +21,7 @@ describe('Pack.vue', () => {
         addPackItem: jest.fn()
       },
       getters: {
-        packItensCount: jest.fn()
+        packItensCount: () => 1
       },
       state: {
         packItensCount: 0
@@ -47,6 +48,12 @@ describe('Pack.vue', () => {
       wrapper.setData({ packItens: fixture.data.packItens })
       expect(wrapper.findAll(Bottle)).toHaveLength(fixture.data.packItens.length)
     })
+
+    // testing getters
+    it('should render a the number of packs stored in the state', () => {
+      wrapper.setData({ packItens: fixture.data.packItens })
+      expect(wrapper.find('.pack-count').text()).toContain(pack.getters.packItensCount())
+    })
   })
 
   describe('when listen to child emmited event', () => {
@@ -58,9 +65,14 @@ describe('Pack.vue', () => {
     })
 
     // testing action dispatch
-    it('should dispatch the removePackItem action', () => {
-      wrapper.vm.buyBottle()
+    it('should dispatch the removePackItem action if ammount > 6', () => {
+      wrapper.vm.buyBottle(7)
       expect(pack.actions.addPackItem).toHaveBeenCalled()
+    })
+
+    it('should change the packItensCount state if ammount > 6', () => {
+      packMutations.addPackItem(pack.state)
+      expect(pack.state.packItensCount).toBe(1)
     })
   })
 })

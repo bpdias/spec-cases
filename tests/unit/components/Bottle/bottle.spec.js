@@ -49,7 +49,7 @@ describe('Bottle.vue', () => {
     // testing custom events
     it('should emmit the openBottle event', () => {
       wrapper.find('#b').trigger('click')
-      expect(wrapper.emitted().removeBottle).toBeTruthy()
+      expect(wrapper.emitted().openBottle).toBeTruthy()
     })
   })
 

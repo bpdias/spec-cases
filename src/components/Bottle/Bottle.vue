@@ -25,7 +25,7 @@ export default {
     },
     openBottle () {
       this.item.ammount += 1
-      this.$emit('removeBottle')
+      this.$emit('openBottle')
     }
   }
 }

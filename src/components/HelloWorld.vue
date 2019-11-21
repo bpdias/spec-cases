@@ -1,26 +1,14 @@
 <template>
-  <bottle :item="item" />
+  <pack />
 </template>
 
 <script>
-import Bottle from '@/components/Bottle/Bottle'
+import Pack from '@/components/Pack/Pack'
 
 export default {
   name: 'HelloWorld',
   components: {
-    Bottle
-  },
-  data () {
-    return {
-      item: {
-        type: 'breja',
-        price: '3.29',
-        size: 'latinha',
-        brand: 'heineken',
-        image: '/images/heineken.png',
-        ammount: 2
-      }
-    }
+    Pack
   }
 }
 </script>

@@ -21,6 +21,9 @@ describe('Pack.vue', () => {
       },
       getters: {
         packItemCount: jest.fn()
+      },
+      state: {
+        packItensCount: 0
       }
     }
 
@@ -31,8 +34,8 @@ describe('Pack.vue', () => {
     })
 
     wrapper = shallowMount(Pack, {
-      localVue,
       store,
+      localVue,
       propsData: fixture
     })
   })
@@ -52,6 +55,11 @@ describe('Pack.vue', () => {
       wrapper.setData({ packItens: fixture.data.packItens })
       wrapper.find(Bottle).vm.$emit('removeBottle')
       expect(wrapper.vm.removeBottle()).toBe(true)
+    })
+
+    it('should dispatch the removePackItem action', () => {
+      wrapper.vm.removeBottle()
+      expect(pack.actions.removePackItem).toHaveBeenCalled()
     })
   })
 })

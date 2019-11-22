@@ -5,6 +5,7 @@ export default {
     size: 'latinha',
     brand: 'heineken',
     image: '/images/heineken.png',
-    ammount: 2
+    ammount: 2,
+    drinking: 0
   }
 }

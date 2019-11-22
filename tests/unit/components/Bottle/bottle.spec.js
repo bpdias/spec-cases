@@ -39,9 +39,9 @@ describe('Bottle.vue', () => {
     })
   })
 
-  describe('when button is clicked', () => {
+  describe('when buyBottle button is clicked', () => {
     // testing native events
-    it('should sub 1 in the ammount', () => {
+    it('should add 1 in the ammount', () => {
       wrapper.find('#b').trigger('click')
       expect(wrapper.props().item.ammount).toBe(3)
     })
@@ -50,6 +50,36 @@ describe('Bottle.vue', () => {
     it('should emmit the buyBottle event', () => {
       wrapper.find('#b').trigger('click')
       expect(wrapper.emitted().buyBottle).toBeTruthy()
+    })
+  })
+
+  describe('when drinkBottle button is clicked', () => {
+    // testing native events
+    it('should add 1 in the drinking', () => {
+      wrapper.find('#b2').trigger('click')
+      expect(wrapper.props().item.drinking).toBe(1)
+    })
+
+    // testing custom events
+    it('should not emmit the buyBottle event', () => {
+      let localWrapper = shallowMount(Bottle, { propsData: {
+        item: {
+          type: 'breja',
+          price: '3.29',
+          size: 'latinha',
+          brand: 'heineken',
+          image: '/images/heineken.png',
+          ammount: 0,
+          drinking: 2
+        }
+      } })
+      localWrapper.find('#b2').trigger('click')
+      expect(localWrapper.emitted().drinkBottle).not.toBeTruthy()
+    })
+
+    it('should  emmit the buyBottle event', () => {
+      wrapper.find('#b2').trigger('click')
+      expect(wrapper.emitted().drinkBottle).toBeTruthy()
     })
   })
 

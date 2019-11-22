@@ -9,7 +9,7 @@
     <img :src="item.image" alt="">
     <p>valor total: {{this.totalValue}}</p>
     <button @click="buyBottle" id="b">Buy a Bottle?</button>
-    <button @click="drinkBottle" id="b">Drink a Bottle?</button>
+    <button @click="drinkBottle" id="b2">Drink a Bottle?</button>
   </div>
 </template>
 <script>
@@ -32,7 +32,7 @@ export default {
     drinkBottle () {
       if (this.item.ammount > this.item.drinking) {
         this.item.drinking += 1
-        this.$emit('drinkBottle')
+        this.$emit('drinkBottle', this.item.drinking)
       }
     }
   }

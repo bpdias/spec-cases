@@ -1,5 +1,5 @@
 export default {
   addPackItem: ({ commit }, payload) => {
-    commit('removePackItemCount', payload)
+    commit('addPackItem', payload)
   }
 }

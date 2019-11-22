@@ -1,3 +1,3 @@
 export default {
-  packItensCount: 0
+  packItensCount: 1
 }

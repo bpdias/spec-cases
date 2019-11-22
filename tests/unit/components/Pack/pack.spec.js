@@ -64,12 +64,24 @@ describe('Pack.vue', () => {
       expect(wrapper.vm.buyBottle()).toBe(true)
     })
 
+    it('should trigger the buyBottle method', () => {
+      wrapper.setData({ packItens: fixture.data.packItens })
+      wrapper.find(Bottle).vm.$emit('drinkBottle')
+      expect(wrapper.vm.drinkBottle()).toBe(true)
+    })
+
+    it('should change the drunk attr if drinking > 6', () => {
+      wrapper.vm.drinkBottle(7)
+      expect(wrapper.vm.drunk).toBe(true)
+    })
+
     // testing action dispatch
     it('should dispatch the removePackItem action if ammount > 6', () => {
       wrapper.vm.buyBottle(7)
       expect(pack.actions.addPackItem).toHaveBeenCalled()
     })
 
+    // testing mutations
     it('should change the packItensCount state if ammount > 6', () => {
       packMutations.addPackItem(pack.state)
       expect(pack.state.packItensCount).toBe(1)
